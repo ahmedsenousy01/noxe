@@ -1,0 +1,20 @@
+.rating {
+	width: 30px;
+	height: 30px;
+}
+
+.before-title {
+	height: 1px;
+	width: 25%;
+	background-color: gray;
+}
+
+.after-title {
+	height: 1px;
+	width: 75%;
+	background-color: gray;
+}
+
+.title .inner > * {
+	margin-bottom: 20px;
+}
