@@ -45,7 +45,7 @@ export default function Row({ title, apiKeyWord, type, apiType }) {
 										alt=" "
 										className="w-100"
 									/>
-									{movie.title}
+									{movie.title? movie.title: movie.name}
 								</div>
 							</Link>
 						</div>

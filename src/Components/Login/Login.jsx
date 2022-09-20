@@ -1,12 +1,13 @@
 import Joi from 'joi';
 import React, { useContext, useState } from 'react'
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RouteAPI, RouteEndPoints } from '../../apiRequests';
 import { CurrentUserContext } from '../../Context/CurrentUserContext';
 
 export default function Login() {
 
-	const { decodeToken } = useContext(CurrentUserContext);
+	const { decodeToken, currentUser } = useContext(CurrentUserContext);
 
   let navigate = useNavigate();
 	const [joiErrors, setJoiErrors] = useState([]);
@@ -15,6 +16,12 @@ export default function Login() {
 		email: '',
 		password: '',
 	});
+
+	useEffect(()=>{
+		if(currentUser) {
+			navigate('/home');
+		}
+	}, [currentUser])
 
 	async function login(e) {
 		e.preventDefault();
@@ -54,7 +61,7 @@ export default function Login() {
 		return schema.validate(user, { abortEarly: false });
 	}
 
-	return 		<>
+	return <>
 			<div className="errors w-75 m-auto">
 				{joiErrors.map((a, index) => (
 					<div key={index} className="alert alert-danger">

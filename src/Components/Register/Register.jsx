@@ -1,11 +1,11 @@
 import Joi from 'joi';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RouteAPI, RouteEndPoints } from '../../apiRequests';
 import { CurrentUserContext } from '../../Context/CurrentUserContext';
 
 export default function Register() {
-	const { decodeToken } = useContext(CurrentUserContext);
+	const { decodeToken, currentUser } = useContext(CurrentUserContext);
 	let navigate = useNavigate();
 	const [joiErrors, setJoiErrors] = useState([]);
 	const [apiErrors, setApiErrors] = useState('');
@@ -16,6 +16,12 @@ export default function Register() {
 		password: '',
 		age: 0,
 	});
+
+	useEffect(() => {
+		if (currentUser) {
+			navigate('/home');
+		}
+	}, [currentUser]);
 
 	async function register(e) {
 		e.preventDefault();

@@ -40,6 +40,7 @@ function App() {
 
     <Routes>
       <Route path='/' element={<Navigate to='/home' />} />
+      <Route path='*' element={<NotFound />} />
       <Route path='/home' element={<ForbiddenIfNotLoggedIn><Home /></ForbiddenIfNotLoggedIn>} />
       <Route path='/movieDetails' element={<ForbiddenIfNotLoggedIn><MovieDetails /></ForbiddenIfNotLoggedIn>} >
         <Route path=':type' element={<ForbiddenIfNotLoggedIn><MovieDetails /></ForbiddenIfNotLoggedIn>}>
@@ -53,7 +54,6 @@ function App() {
       </Route>
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
-      <Route path='*' element={<NotFound />} />
     </Routes>
   </>
 }
